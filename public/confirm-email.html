@@ -67,27 +67,17 @@
         if (error) throw error;
 
         loadingDiv.style.display = 'none';
+        
+        // Cambiar título
+        document.querySelector('h1').textContent = 'Email confirmado';
+        document.querySelector('.subtitle').textContent = '¡Tu cuenta está lista!';
+        
         messageDiv.innerHTML = `
           <div class="success">
-            <h3 style="margin-bottom: 8px;">✅ Email confirmado exitosamente</h3>
-            <p>Tu cuenta ha sido activada. Ya puedes iniciar sesión en la app.</p>
+            <h3 style="margin-bottom: 8px;">✅ Confirmación exitosa</h3>
+            <p>Ya puedes iniciar sesión en la app.</p>
           </div>
         `;
-
-        // Redirigir a la app después de 3 segundos
-        setTimeout(() => {
-          // Intenta abrir la app con deep link
-          window.location.href = 'flutterlogin://email-confirmed';
-          
-          // Fallback: Si no abre la app, mostrar mensaje
-          setTimeout(() => {
-            messageDiv.innerHTML += `
-              <p style="margin-top: 16px; text-align: center; color: #718096;">
-                Si la app no se abre automáticamente, ábrela manualmente y inicia sesión.
-              </p>
-            `;
-          }, 2000);
-        }, 3000);
 
       } catch (error) {
         console.error('Error:', error);
